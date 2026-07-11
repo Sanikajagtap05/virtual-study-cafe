@@ -52,6 +52,12 @@ function Navbar() {
                 Dashboard
               </Link>
             </li>
+            
+            <li className="nav-item">
+              <Link className="nav-link" to="/timer">
+                Timer
+              </Link>
+            </li>
 
             <li className="nav-item">
               <Link className="nav-link" to="/tasks">

@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import StudyRoom from './pages/StudyRoom';
 import Tasks from './pages/Tasks';
 import Footer from './components/Footer';
+import Timer from './pages/Timer';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/timer" element={<Timer />} />
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/calender" element={<Calender />} />

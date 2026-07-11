@@ -37,6 +37,10 @@ function Sidebar() {
           Dashboard
         </Link>
 
+        <Link className="list-group-item list-group-item-action" to="/timer">
+          ⏱ Timer
+        </Link>
+
         <Link
           className="list-group-item list-group-item-action"
           to="/tasks"
