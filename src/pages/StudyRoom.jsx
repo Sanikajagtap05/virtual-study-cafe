@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Tasks() {
+export default function StudyRoom() {
   return (
     <div>
       
