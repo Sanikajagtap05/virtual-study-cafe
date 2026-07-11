@@ -4,13 +4,13 @@ import {
   FaFire,
   FaBook
 } from "react-icons/fa";
+
 import WelcomeCard from "../components/dashboard/WelcomeCard";
 import StatsCard from "../components/dashboard/StateCard";
 import GoalCard from "../components/dashboard/GoalCard";
 import QuoteCard from "../components/dashboard/QuoteCard";
 import ProgressCard from "../components/dashboard/ProgressCard";
 import PomodoroWidget from "../components/dashboard/PomodoroWidget";
-
 
 function Dashboard() {
   return (
@@ -53,7 +53,7 @@ function Dashboard() {
       <div className="row mt-2">
 
         <div className="col-lg-4 mb-4">
-        <GoalCard />
+          <GoalCard />
         </div>
 
         <div className="col-lg-4 mb-4">

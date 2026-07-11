@@ -1,3 +1,5 @@
+import dashboard1 from "../../assets/dashboard1.jpg";
+
 function WelcomeCard() {
   const hour = new Date().getHours();
 
@@ -8,19 +10,36 @@ function WelcomeCard() {
 
   return (
     <div
-      className="card border-0 shadow rounded-4 mb-4"
+      className="card border-0 shadow rounded-4 mb-4 overflow-hidden"
       style={{
-        background:
-          "linear-gradient(135deg,#FFE8CC,#FFF5E4)",
+        background: "linear-gradient(135deg,#FFE8CC,#FFF5E4)",
       }}
     >
-      <div className="card-body p-4">
+      <div className="row align-items-center">
 
-        <h2 className="fw-bold">{greeting}</h2>
+        <div className="col-md-7 p-4">
 
-        <p className="mb-0 text-secondary">
-          Ready for another productive study session?
-        </p>
+          <h2 className="fw-bold">{greeting}</h2>
+
+          <p className="text-secondary mb-0">
+            Ready for another productive study session?
+          </p>
+
+        </div>
+
+        <div className="col-md-5 text-end">
+
+          <img
+            src={dashboard1}
+            alt="Dashboard"
+            className="img-fluid"
+            style={{
+              maxHeight: "220px",
+              objectFit: "cover",
+            }}
+          />
+
+        </div>
 
       </div>
     </div>
