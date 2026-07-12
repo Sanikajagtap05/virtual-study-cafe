@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 function PomodoroWidget() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="card shadow rounded-4 border-0">
 
@@ -10,7 +15,10 @@ function PomodoroWidget() {
           25:00
         </h1>
 
-        <button className="btn btn-primary mt-3">
+        <button
+          className="btn btn-primary mt-3"
+          onClick={() => navigate("/timer")}
+        >
           Start Session
         </button>
 

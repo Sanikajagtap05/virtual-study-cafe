@@ -1,9 +1,23 @@
-function StatsCard({ title, value, icon, color }) {
+import { useNavigate } from "react-router-dom";
+
+function StatsCard({ title, value, icon, color, link }) {
+  const navigate = useNavigate();
+
   return (
     <div className="col-lg-3 col-md-6 mb-4">
-
       <div
         className="card border-0 shadow rounded-4 h-100"
+        onClick={() => navigate(link)}
+        style={{
+          cursor: "pointer",
+          transition: "0.3s",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "translateY(-8px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
       >
         <div className="card-body">
 
@@ -26,7 +40,6 @@ function StatsCard({ title, value, icon, color }) {
 
         </div>
       </div>
-
     </div>
   );
 }

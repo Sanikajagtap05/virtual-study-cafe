@@ -1,7 +1,18 @@
-function GoalCard() {
-  return (
-    <div className="card shadow rounded-4 border-0">
+import { useNavigate } from "react-router-dom";
 
+function GoalCard() {
+
+  const navigate = useNavigate();
+
+  return (
+    <div
+      className="card shadow rounded-4 border-0 h-100"
+      onClick={() => navigate("/tasks")}
+      style={{
+        cursor: "pointer",
+        transition: "0.3s",
+      }}
+    >
       <div className="card-body">
 
         <h4>🎯 Today's Goal</h4>
@@ -20,7 +31,6 @@ function GoalCard() {
         </div>
 
       </div>
-
     </div>
   );
 }

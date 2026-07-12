@@ -25,6 +25,7 @@ function Dashboard() {
           value="12"
           color="#FF8A65"
           icon={<FaClock />}
+          link="/analytics"
         />
 
         <StatsCard
@@ -32,6 +33,7 @@ function Dashboard() {
           value="24"
           color="#42A5F5"
           icon={<FaTasks />}
+          link="/tasks"
         />
 
         <StatsCard
@@ -39,6 +41,7 @@ function Dashboard() {
           value="7"
           color="#66BB6A"
           icon={<FaFire />}
+          link="/analytics"
         />
 
         <StatsCard
@@ -46,6 +49,7 @@ function Dashboard() {
           value="15"
           color="#AB47BC"
           icon={<FaBook />}
+          link="/notes"
         />
 
       </div>
