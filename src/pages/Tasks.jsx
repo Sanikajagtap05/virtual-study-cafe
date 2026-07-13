@@ -25,7 +25,7 @@ export default function Tasks() {
 
             <img
               src={todolist1}
-              alt=""
+              alt="To do list"
               className="img-fluid w-100"
               style={{
                 height: "320px",
