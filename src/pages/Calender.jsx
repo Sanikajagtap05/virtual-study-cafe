@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import calendarImg from "../assets/Calender1.jpg";
 import { FaCalendarAlt, FaBook, FaTrash, FaPlus } from "react-icons/fa";
 
@@ -7,6 +7,10 @@ function Calender() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("Study");
+
+  // Refs
+  const formRef = useRef(null);
+  const titleRef = useRef(null);
 
   useEffect(() => {
     const savedEvents = JSON.parse(localStorage.getItem("studyEvents"));
@@ -19,6 +23,18 @@ function Calender() {
   useEffect(() => {
     localStorage.setItem("studyEvents", JSON.stringify(events));
   }, [events]);
+
+  // Scroll to Add Event Form
+  const handlePlanWeek = () => {
+    formRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    setTimeout(() => {
+      titleRef.current?.focus();
+    }, 500);
+  };
 
   const addEvent = (e) => {
     e.preventDefault();
@@ -88,8 +104,11 @@ function Calender() {
               Organize your assignments, exams and study schedule in one place.
             </p>
 
-            <button className="btn btn-warning rounded-pill px-4 mt-2">
-              Plan Your Week
+            <button
+              onClick={handlePlanWeek}
+              className="btn btn-warning rounded-pill px-4 mt-2"
+            >
+              📅 Plan Your Week
             </button>
           </div>
 
@@ -161,10 +180,12 @@ function Calender() {
         </div>
 
       </div>
+            {/* Form */}
 
-      {/* Form */}
-
-      <div className="card border-0 shadow rounded-4 p-4 mb-5">
+      <div
+        ref={formRef}
+        className="card border-0 shadow rounded-4 p-4 mb-5"
+      >
 
         <h3
           className="fw-bold mb-4"
@@ -179,6 +200,7 @@ function Calender() {
 
             <div className="col-md-4">
               <input
+                ref={titleRef}
                 type="text"
                 className="form-control rounded-3"
                 placeholder="Event Title"
@@ -200,9 +222,7 @@ function Calender() {
               <select
                 className="form-select rounded-3"
                 value={category}
-                onChange={(e) =>
-                  setCategory(e.target.value)
-                }
+                onChange={(e) => setCategory(e.target.value)}
               >
                 <option>Study</option>
                 <option>Exam</option>
@@ -213,6 +233,7 @@ function Calender() {
 
             <div className="col-md-2 d-grid">
               <button
+                type="submit"
                 className="btn btn-warning rounded-3"
               >
                 <FaPlus className="me-2" />
@@ -249,47 +270,55 @@ function Calender() {
               No events added yet
             </h5>
 
+            <p className="text-muted">
+              Click <strong>📅 Plan Your Week</strong> or add your first study event above.
+            </p>
+
           </div>
         ) : (
-          events.map((event) => (
-            <div
-              key={event.id}
-              className="card border-0 shadow-sm rounded-4 mb-3"
-              style={{
-                background: "#FFFDF8",
-              }}
-            >
-              <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
+          events
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((event) => (
+              <div
+                key={event.id}
+                className="card border-0 shadow-sm rounded-4 mb-3"
+                style={{
+                  background: "#FFFDF8",
+                  transition: "0.3s",
+                }}
+              >
+                <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
 
-                <div>
+                  <div>
 
-                  <h5 className="fw-bold mb-1">
-                    {event.title}
-                  </h5>
+                    <h5 className="fw-bold mb-1">
+                      {event.title}
+                    </h5>
 
-                  <p className="mb-1 text-muted">
-                    📅 {event.date}
-                  </p>
+                    <p className="mb-1 text-muted">
+                      📅 {event.date}
+                    </p>
 
-                  <span className="badge bg-warning text-dark rounded-pill px-3">
-                    {event.category}
-                  </span>
+                    <span className="badge bg-warning text-dark rounded-pill px-3">
+                      {event.category}
+                    </span>
+
+                  </div>
+
+                  <button
+                    className="btn btn-danger rounded-circle"
+                    onClick={() => deleteEvent(event.id)}
+                  >
+                    <FaTrash />
+                  </button>
 
                 </div>
-
-                <button
-                  className="btn btn-danger rounded-circle"
-                  onClick={() => deleteEvent(event.id)}
-                >
-                  <FaTrash />
-                </button>
-
               </div>
-            </div>
-          ))
+            ))
         )}
 
       </div>
+
     </div>
   );
 }

@@ -18,6 +18,7 @@ import Tasks from "./pages/Tasks";
 import Timer from "./pages/Timer";
 
 import background from "./assets/background.jpg";
+import StudySession from "./pages/StudySession";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/studysession" element={<StudySession />} />
               </Routes>
             </div>
           </div>

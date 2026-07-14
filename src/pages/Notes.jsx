@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
-import banner from "../assets/notes-banner.jpg"; // Change extension if needed
+import { useEffect, useState, useRef } from "react";
+import banner from "../assets/notes-banner.jpg";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
+
+  // Refs
+  const createNoteRef = useRef(null);
+  const titleInputRef = useRef(null);
 
   // Load Notes
   useEffect(() => {
@@ -20,6 +24,18 @@ export default function Notes() {
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
+
+  // Start Writing Button
+  const handleStartWriting = () => {
+    createNoteRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    setTimeout(() => {
+      titleInputRef.current?.focus();
+    }, 500);
+  };
 
   // Add Note
   const addNote = () => {
@@ -102,6 +118,7 @@ export default function Notes() {
             </p>
 
             <button
+              onClick={handleStartWriting}
               className="btn mt-3"
               style={{
                 background: "#6366F1",
@@ -117,7 +134,7 @@ export default function Notes() {
           <div className="col-lg-6">
             <img
               src={banner}
-              alt=""
+              alt="Notes Banner"
               className="img-fluid w-100"
               style={{
                 height: "320px",
@@ -131,6 +148,7 @@ export default function Notes() {
       {/* Add Note */}
 
       <div
+        ref={createNoteRef}
         className="card shadow border-0 p-4 mb-5"
         style={{
           borderRadius: "20px",
@@ -139,6 +157,7 @@ export default function Notes() {
         <h4 className="mb-4">➕ Create New Note</h4>
 
         <input
+          ref={titleInputRef}
           type="text"
           placeholder="Title..."
           className="form-control mb-3"
@@ -219,11 +238,7 @@ export default function Notes() {
                     {note.date}
                   </small>
 
-                  <p
-                    style={{
-                      flex: 1,
-                    }}
-                  >
+                  <p style={{ flex: 1 }}>
                     {note.content}
                   </p>
 
